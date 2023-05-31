@@ -1,0 +1,3 @@
+<template>
+  <h1>ユーザ登録</h1>
+</template>
