@@ -1,14 +1,17 @@
 import { createUserSchema, CreateUser } from '@/schema/user'
-import { typeToFlattenedError, ZodError, ZodType } from 'zod'
+import { ZodError } from 'zod'
 
-export const useUserValidation = () => {
-  const errorMessages = ref<typeToFlattenedError<ZodType>["fieldErrors"] | null>(null)
+export const useCreateUserValidation = () => {
+  const errorMessages = ref<ZodError | null>(null)
   const validate = (data: CreateUser) => {
     try {
       createUserSchema.parse(data)
+      if(errorMessages.value) {
+        errorMessages.value = null
+      }
     } catch(e) {
       if(e instanceof ZodError) {
-        errorMessages.value = e.flatten().fieldErrors
+        errorMessages.value = e
       }
     }
   }

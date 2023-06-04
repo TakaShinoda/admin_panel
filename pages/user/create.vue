@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const { errorMessages, validate} = useUserValidation()
+  const { errorMessages, validate } = useCreateUserValidation()
   const name = ref('')
   const email = ref('')
   const submit = () => {
